@@ -26,6 +26,38 @@ export const welcomeEmail = async (to, subject, htmlContent) => {
       subject,
       html: htmlContent,
     });
+    // console.log("Email send: ", response);
+    return response;
+  } catch (error) {
+    console.error("Error sending email: ", error);
+    throw new Error("Failed to Send Welcome Email");
+  }
+};
+
+export const forgetPasswordEmail = async (to, subject, htmlContent) => {
+  try {
+    const response = await resend.emails.send({
+      from: "Auth-Application <onboarding@resend.dev>",
+      to,
+      subject,
+      html: htmlContent,
+    });
+    // console.log("Email send: ", response);
+    return response;
+  } catch (error) {
+    console.error("Error sending email: ", error);
+    throw new Error("Failed to Send Welcome Email");
+  }
+};
+
+export const resetPasswordSuccessEmail = async (to, subject, htmlContent) => {
+  try {
+    const response = await resend.emails.send({
+      from: "Auth-Application <onboarding@resend.dev>",
+      to,
+      subject,
+      html: htmlContent,
+    });
     console.log("Email send: ", response);
     return response;
   } catch (error) {
