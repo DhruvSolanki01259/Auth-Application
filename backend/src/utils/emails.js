@@ -58,7 +58,7 @@ export const resetPasswordSuccessEmail = async (to, subject, htmlContent) => {
       subject,
       html: htmlContent,
     });
-    console.log("Email send: ", response);
+    // console.log("Email send: ", response);
     return response;
   } catch (error) {
     console.error("Error sending email: ", error);
