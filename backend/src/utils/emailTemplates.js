@@ -28,7 +28,7 @@ export const verifyEmailTemplate = (username, verificationCode) => `
       <p>Welcome to <strong style="background: ${BRAND_GRADIENT}; -webkit-background-clip: text; color: transparent;">${BRAND_NAME}</strong>! Use the verification code below to activate your account:</p>
       
       <div style="text-align: center; margin: 36px 0;">
-        <span style="display: inline-block; background: #f3f4f6; color: ${TEXT_LIGHT}; padding: 18px 36px; border-radius: 10px; font-size: 28px; font-weight: 600; letter-spacing: 4px; box-shadow: 0 0 15px rgba(6,182,212,0.15);">
+        <span style="display: inline-block; background: #f3f4f6; color: ${TEXT_LIGHT}; padding: 18px 36px; border-radius: 10px; font-size: 28px; font-weight: 600; letter-spacing: 4px; box-shadow: 0 0 15px rgba(0,0,0,0.05);">
           ${verificationCode}
         </span>
       </div>
