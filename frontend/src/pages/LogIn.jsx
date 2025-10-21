@@ -9,10 +9,11 @@ const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { isLoading } = useAuthStore();
+  const { login, isLoading, error } = useAuthStore();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    await login(email, password);
   };
 
   return (
@@ -52,6 +53,10 @@ const LogIn = () => {
             </Link>
           </div>
 
+          {/* Error Field */}
+          {error && <p className='text-red-500 font-semibold mb-2'>{error}</p>}
+
+          {/* Submit Button */}
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}

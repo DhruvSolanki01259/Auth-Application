@@ -1,26 +1,65 @@
 import EmailVerification from "./pages/EmailVerification";
+import LoadingSpinner from "./components/LoadingSpinner";
+import FloatingShape from "./components/FloatingShape";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import { useAuthStore } from "./store/authStore";
-import ForgotEmail from "./pages/ForgotEmail";
-import Profile from "./pages/DashBoard";
+import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
+
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 
-import FloatingShape from "./components/FloatingShape";
+// protect routes that require authentication
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, user } = useAuthStore();
 
-import { Route, Routes } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
+  if (!isAuthenticated) {
+    return (
+      <Navigate
+        to='/login'
+        replace
+      />
+    );
+  }
 
-const App = () => {
-  const { user, isAuthenticated, isCheckingAuth, checkAuth } = useAuthStore();
+  if (!user?.isVerified) {
+    return (
+      <Navigate
+        to='/verify-email'
+        replace
+      />
+    );
+  }
 
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+  return children;
+};
 
-  console.log(`isAuthenticated: ${isAuthenticated}`);
-  console.log(`user: ${user}`);
+// redirect authenticated users to the home page
+const RedirectAuthenticatedUser = ({ children }) => {
+  const { isAuthenticated, user } = useAuthStore();
+
+  if (isAuthenticated && user?.isVerified) {
+    return (
+      <Navigate
+        to='/'
+        replace
+      />
+    );
+  }
+
+  return children;
+};
+
+function App() {
+  const { user, isAuthenticated } = useAuthStore();
+
+  if (user === undefined && !isAuthenticated) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-gray-900 via-fuchsia-900 to-cyan-900 flex items-center justify-center relative overflow-hidden'>
@@ -50,31 +89,69 @@ const App = () => {
       <Routes>
         <Route
           path='/'
-          element={<Home />}
-        />
-        <Route
-          path='/verify-email'
-          element={<EmailVerification />}
-        />
-        <Route
-          path='/forgot-password'
-          element={<ForgotEmail />}
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
         />
         <Route
           path='/profile'
-          element={<Profile />}
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
         />
         <Route
           path='/signup'
-          element={<SignUp />}
+          element={
+            <RedirectAuthenticatedUser>
+              <SignUp />
+            </RedirectAuthenticatedUser>
+          }
         />
         <Route
           path='/login'
-          element={<LogIn />}
+          element={
+            <RedirectAuthenticatedUser>
+              <LogIn />
+            </RedirectAuthenticatedUser>
+          }
+        />
+        <Route
+          path='/verify-email'
+          element={
+            <RedirectAuthenticatedUser>
+              <EmailVerification />
+            </RedirectAuthenticatedUser>
+          }
+        />
+        <Route
+          path='/forgot-password'
+          element={
+            <RedirectAuthenticatedUser>
+              <ForgotPassword />
+            </RedirectAuthenticatedUser>
+          }
+        />
+        <Route
+          path='/reset-password/:token'
+          element={
+            <RedirectAuthenticatedUser>
+              <ResetPassword />
+            </RedirectAuthenticatedUser>
+          }
+        />
+        {/* catch all routes */}
+        <Route
+          path='*'
+          element={<NotFound />}
         />
       </Routes>
+      <Toaster />
     </div>
   );
-};
+}
 
 export default App;
