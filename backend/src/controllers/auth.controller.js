@@ -218,7 +218,8 @@ export const forgetPasswordController = async (req, res) => {
     user.resetPasswordTokenExpiresAt = resetTokenExpiredAt;
     await user.save();
 
-    const forgetPasswordLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
+    // const forgetPasswordLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
+    const forgetPasswordLink = `https://auth-application-ds.vercel.app/reset-password/${resetToken}`;
     const emailSubject = "Forget Password";
     const emailTemplate = resetPasswordEmailTemplate(
       user.username,

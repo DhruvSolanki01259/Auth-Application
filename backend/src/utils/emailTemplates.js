@@ -1,6 +1,3 @@
-// Client URL
-const CLIENT_URL = process.env.CLIENT_URL;
-
 // EMAIL VERIFICATION TEMPLATE
 export const verifyEmailTemplate = (username, verificationCode) => `
 <!DOCTYPE html>
@@ -76,12 +73,12 @@ export const welcomeEmailTemplate = (username) => `
       </ul>
 
       <div style="text-align: center; margin: 36px 0;">
-        <a href="${CLIENT_URL}/dashboard" style="background: linear-gradient(90deg, #d946ef, #9333ea, #06b6d4); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 10px; font-weight: 600; box-shadow: 0 0 25px rgba(217,70,239,0.3);">
+        <a href="https://auth-application-ds.vercel.app/dashboard" style="background: linear-gradient(90deg, #d946ef, #9333ea, #06b6d4); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 10px; font-weight: 600; box-shadow: 0 0 25px rgba(217,70,239,0.3);">
           Go to Dashboard
         </a>
       </div>
 
-      <p>If you ever need assistance, visit our <a href="${CLIENT_URL}/support" style="color:#111827; text-decoration:none;">Support Center</a>.</p>
+      <p>If you ever need assistance, visit our <a href="https://auth-application-ds.vercel.app/support" style="color:#111827; text-decoration:none;">Support Center</a>.</p>
     </div>
 
     <div style="text-align: center; background: #f3f4f6; padding: 14px; font-size: 12px; color: #6b7280; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
