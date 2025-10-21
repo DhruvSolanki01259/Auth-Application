@@ -67,14 +67,14 @@ export const welcomeEmailTemplate = (username) => `
       </h2>
       <p>We’re thrilled to have you join <strong style="background: linear-gradient(90deg, #d946ef, #9333ea, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Auth Application</strong>. Here’s how to get started:</p>
       <ul style="color: #6b7280; line-height: 1.8; padding-left: 20px;">
-        <li>✅ Access your personalized dashboard</li>
+        <li>✅ Access your personalized profile</li>
         <li>🔐 Update your profile for extra security</li>
         <li>🚀 Enjoy smooth authentication experiences</li>
       </ul>
 
       <div style="text-align: center; margin: 36px 0;">
-        <a href="https://auth-application-ds.vercel.app/dashboard" style="background: linear-gradient(90deg, #d946ef, #9333ea, #06b6d4); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 10px; font-weight: 600; box-shadow: 0 0 25px rgba(217,70,239,0.3);">
-          Go to Dashboard
+        <a href="https://auth-application-ds.vercel.app/profile" style="background: linear-gradient(90deg, #d946ef, #9333ea, #06b6d4); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 10px; font-weight: 600; box-shadow: 0 0 25px rgba(217,70,239,0.3);">
+          Go to Profile
         </a>
       </div>
 
