@@ -19,7 +19,7 @@ router.post("/login", loginController);
 router.post("/logout", logoutController);
 
 router.post("/verify-email", verifyEmailController);
-router.post("/forget-password", forgetPasswordController);
+router.post("/forgot-password", forgetPasswordController);
 
 router.post("/reset-password/:token", resetPasswordController);
 

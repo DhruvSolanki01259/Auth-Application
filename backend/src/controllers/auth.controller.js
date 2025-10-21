@@ -101,6 +101,8 @@ export const verifyEmailController = async (req, res) => {
     user.verificationTokenExpiresAt = undefined;
     await user.save();
 
+    generateCookieAndToken(res, user._id);
+
     const emailSubject = "Welcome Email";
     const emailTemplate = welcomeEmailTemplate(user.username);
     await welcomeEmail(user.email, emailSubject, emailTemplate);
