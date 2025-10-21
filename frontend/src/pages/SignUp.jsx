@@ -34,7 +34,6 @@ const SignUp = () => {
       className='max-w-md w-full bg-gray-900/70 backdrop-blur-xl border border-fuchsia-500/30 
       shadow-[0_0_20px_rgba(255,0,255,0.2)] rounded-2xl overflow-hidden'>
       <div className='p-8'>
-        <h1>HELO</h1>
         {/* Heading */}
         <h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-fuchsia-500 via-purple-500 to-cyan-400 text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(255,0,255,0.4)]'>
           Create your Account
