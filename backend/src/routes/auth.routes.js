@@ -12,7 +12,7 @@ import { protectRoute } from "../middleware/protectRoutes.js";
 
 const router = express.Router();
 
-router.get("/", protectRoute, checkAuth);
+router.get("/check-auth", protectRoute, checkAuth);
 
 router.post("/signup", signupController);
 router.post("/login", loginController);

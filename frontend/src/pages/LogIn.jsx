@@ -3,11 +3,13 @@ import { motion } from "framer-motion";
 import { Mail, Lock, Loader } from "lucide-react";
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
+import { useAuthStore } from "../store/authStore";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const isLoading = true;
+
+  const { isLoading } = useAuthStore();
 
   const handleLogin = async (e) => {
     e.preventDefault();

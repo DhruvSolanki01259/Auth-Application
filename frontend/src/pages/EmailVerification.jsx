@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-// import { useAuthStore } from "../store/authStore";
+import { useAuthStore } from "../store/authStore";
 import toast from "react-hot-toast";
 
 const EmailVerification = () => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef([]);
   const navigate = useNavigate();
-  const isLoading = false;
 
-  // const { error, isLoading, verifyEmail } = useAuthStore();
+  const { error, isLoading, verifyEmail } = useAuthStore();
 
   const handleChange = (index, value) => {
     const newCode = [...code];
@@ -47,14 +46,13 @@ const EmailVerification = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const verificationCode = code.join("");
-    // try {
-    //   await verifyEmail(verificationCode);
-    //   navigate("/");
-    //   toast.success("Email verified successfully");
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    alert(`Verification Code Submitted: ${verificationCode}`);
+    try {
+      await verifyEmail(verificationCode);
+      navigate("/");
+      toast.success("Email verified successfully");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Auto submit when all fields are filled
@@ -93,13 +91,13 @@ const EmailVerification = () => {
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 className='w-12 h-12 text-center text-2xl font-bold bg-gray-800/70 backdrop-blur-md border border-purple-700/50 rounded-lg text-white placeholder-gray-400 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/60 shadow-[0_0_10px_rgba(0,255,255,0.1)] focus:shadow-[0_0_20px_rgba(255,0,255,0.3)] transition duration-300'
               />
-
-              /*
-                
-              */
             ))}
           </div>
-          {/* {error && <p className='text-red-500 font-semibold mt-2'>{error}</p>} */}
+
+          {/* Error Field */}
+          {error && <p className='text-red-500 font-semibold mt-2'>{error}</p>}
+
+          {/* Submit Button */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

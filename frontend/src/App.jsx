@@ -1,4 +1,5 @@
 import EmailVerification from "./pages/EmailVerification";
+import { useAuthStore } from "./store/authStore";
 import ForgotEmail from "./pages/ForgotEmail";
 import Profile from "./pages/DashBoard";
 import SignUp from "./pages/SignUp";
@@ -8,10 +9,22 @@ import Home from "./pages/Home";
 import FloatingShape from "./components/FloatingShape";
 
 import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 const App = () => {
+  const { user, isAuthenticated, isCheckingAuth, checkAuth } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  console.log(`isAuthenticated: ${isAuthenticated}`);
+  console.log(`user: ${user}`);
+
   return (
     <div className='min-h-screen bg-gradient-to-br from-gray-900 via-fuchsia-900 to-cyan-900 flex items-center justify-center relative overflow-hidden'>
+      <Toaster />
       <FloatingShape
         color='bg-fuchsia-500'
         size='w-64 h-64'
